@@ -1,10 +1,12 @@
-# Myapp
+# ThediForntend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10 and [Google IDX](https://idx.google.com/import).
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm install && npm run start` for a dev server. Navigate to `http://localhost:4201/`. The application will automatically reload if you change any of the source files.
+
+open `src/app/app.service` to add backebd server url. Clone `https://github.com/kephothoX/ThediServer` follow `README.md` for setup options.
 
 ## Code scaffolding
 
@@ -25,3 +27,13 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Disclaimer 
+To run from [Google IDX](https://idx.google.com/import) clone both `https://github.com/kephothoX/ThediFrontend` and `https://github.com/kephothoX/ThediServer` and import them directly to your workspace.
+
+Replace `PinataJwt`.
+
+## Important Links:
+- Signup `http://localhost:4201/signup`.
+- Signin `http://localhost:4201/signin`
+  
