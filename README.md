@@ -1,4 +1,4 @@
-# ThediForntend
+# ThediFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10 and [Google IDX](https://idx.google.com/import).
 
