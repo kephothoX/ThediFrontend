@@ -1,0 +1,156 @@
+<section class="container-fluid">
+  <mat-card class="card material-elevation-z8 card-light">
+    <mat-card-title>
+      <h2 class="fs-2 info">Register</h2>
+    </mat-card-title>
+    <a class="nav-link" href="signin">
+      <button mat-raised-button color="warn">
+        <mat-icon class="material-symbols-outlined">login</mat-icon>
+        Already Registered?
+      </button>
+  </a>
+    <mat-card-content>
+      <form [formGroup]="signUpForm" class="mat-elevation-z4 centered form col-lg-6 col-md-10 col-sm-12"
+        enctype="application/x-www-form-url-encoded">
+        <mat-form-field appearance="fill" class="p-1 form-control">
+          <mat-label>Full Name </mat-label>
+          <mat-icon matPrefix class="material-symbols-outlined">info_outline</mat-icon>
+          <mat-hint align="end"></mat-hint>
+          <input type="text" matInput formControlName="name" placeholder="Full Name">
+        </mat-form-field>
+        <div class="spacer"></div>
+
+
+        <mat-form-field appearance="fill" class="p-1 form-control">
+          <mat-label>Email </mat-label>
+          <mat-hint align="end"></mat-hint>
+          <input type="email" matInput email="true" formControlName="email" placeholder="Email Address">
+          <mat-icon matPrefix class="material-symbols-outlined">mail_outline</mat-icon>
+        </mat-form-field>
+        <div class="spacer"></div>
+
+        <mat-form-field appearance="fill" class="p-1 form-control" color="primary">
+          <mat-label>Date Of Birth</mat-label>
+
+          <mat-icon matPrefix class="material-symbols-outlined">calender</mat-icon>
+          <input type="date" matInput formControlName="dob" placeholder="Date Of Birth">
+          <mat-hint align="end">YYYY/MM/DD</mat-hint>
+        </mat-form-field>
+        <div class="spacer"></div>
+
+
+        <mat-form-field appearance="fill" class="p-1 form-control">
+          <mat-label>City</mat-label>
+          <mat-hint align="end"></mat-hint>
+          <mat-icon matPrefix class="material-symbols-outlined">info_outline</mat-icon>
+          <input type="text" matInput formControlName="city" placeholder="City">
+        </mat-form-field>
+        <div class="spacer"></div>
+
+        <mat-form-field appearance="fill" class="p-1 form-control">
+          <mat-label>Country</mat-label>
+          <mat-hint align="end"></mat-hint>
+          <mat-icon matPrefix class="material-symbols-outlined">info_outline</mat-icon>
+          <mat-select formControlName="country">
+            <mat-option *ngFor="let entry of Countries" [value]="entry.Country_Code_1"
+              (click)="getCountryPrefix(entry.Phone_Prefix)">
+              {{ entry.Country_Name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="spacer"></div>
+
+
+        <mat-form-field appearance="fill" class="p-1 form-control">
+          <mat-label>Phone Number </mat-label>
+          <mat-hint align="end"></mat-hint>
+          <span matPrefix>{{ Phone_Prefix }} </span>
+          <input type="tel" matInput tel="true" formControlName="phone" placeholder="Phone Number">
+        </mat-form-field>
+        <div class="spacer"></div>
+
+        <mat-form-field appearance="fill" class="p-1 form-control">
+          <mat-label>Passport Size Photo CID</mat-label>
+          <mat-icon matPrefix class="material-symbols-outlined">info_outline</mat-icon>
+          <mat-hint align="end">CID returned after selecting and uploading file</mat-hint>
+          <input type="text" matInput formControlName="passport_sized_photo_CID" [(ngModel)]="PassportSizedPhotoCID" #passportSizedPhotoCID>
+  
+          <button mat-raised-button  color="primary" class="p-1">
+            Select to Upload File
+            <mat-icon class="material-symbols-outlined">attachment</mat-icon>
+            <input type="file" (change)="uploadPassportSizedPhoto($event)" accept="*" />
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteFile(passportSizedPhotoCID.value)">
+          <mat-icon class="material-symbols-outlined">delete</mat-icon>
+          Delete File
+        </button>
+        </mat-form-field>
+        <div class="spacer"></div>
+
+        <mat-form-field appearance="fill" class="p-1 form-control">
+          <mat-label>Credit Report Document CID</mat-label>
+          <mat-icon matPrefix class="material-symbols-outlined">info_outline</mat-icon>
+          <mat-hint align="end">CID returned after selecting and uploading file</mat-hint>
+          <input type="text" matInput formControlName="credit_report_doc_CID" [(ngModel)]="CreditReportDocCID" #creditReportDocCID>
+  
+          <button mat-raised-button  color="primary" class="p-1">
+            Select to Upload File
+            <mat-icon class="material-symbols-outlined">attachment</mat-icon>
+            <input type="file" (change)="uploadCreditReportDoc($event)" accept="*" />
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteFile(creditReportDocCID.value)">
+          <mat-icon class="material-symbols-outlined">delete</mat-icon>
+          Delete File
+        </button>
+        </mat-form-field>
+        <div class="spacer"></div>
+
+        <mat-form-field appearance="fill" class="p-1 form-control">
+          <mat-label>Identification Document (i.e Passport or ID)</mat-label>
+          <mat-icon matPrefix class="material-symbols-outlined">info_outline</mat-icon>
+          <mat-hint align="end">CID returned after selecting and uploading file</mat-hint>
+          <input type="text" matInput formControlName="identification_doc_CID" [(ngModel)]="IdentificationDocCID" #identificationDocCID>
+  
+          <button mat-raised-button  color="primary" class="p-1">
+            Select to Upload File
+            <mat-icon class="material-symbols-outlined">attachment</mat-icon>
+            <input type="file" (change)="uploadIdentificationDoc($event)" accept="*" />
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteFile(identificationDocCID.value)">
+          <mat-icon class="material-symbols-outlined">delete</mat-icon>
+          Delete File
+        </button>
+        </mat-form-field>
+        <div class="spacer"></div>
+
+
+
+      </form>
+
+      
+
+      <mat-card-actions class="d-flex justify-content-center card-footer p-4 m-1">
+        <button mat-raised-button color="primary" (click)="ngOnSubmit()"
+          [disabled]="!signUpForm.valid">
+          <mat-icon class="material-symbols-outlined">person_add</mat-icon>
+          Submit
+        </button>
+
+        <button mat-raised-button color="warn" (click)="resetForm()">
+          <mat-icon class="material-symbols-outlined">clear</mat-icon>
+          Clear
+        </button>
+
+        <a href="transactions">
+          <button mat-raised-button color="warn">
+            <mat-icon class="material-symbols-outlined">paid</mat-icon>
+            Continue To Transactions
+          </button>
+        </a>
+      </mat-card-actions>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</section>
